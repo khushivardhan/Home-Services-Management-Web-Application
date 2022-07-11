@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delivered Orders</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/include.css">
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini" >
+  
+ 
+
+  <%-include('./partials/usernavbar.ejs')%>
+
+  
+
+  <section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-99">
+        <div class="col-md-12 col-xl-10">
+  
+          <div class="card">
+            <div class="card-header p-3">
+              <h5 class="mb-0">Delivered Orders</h5>
+            </div>
+            <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: auto">
+  
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Domain</th>
+                    <th scope="col">Sub Domain</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Delivered By</th>
+                    <th scope="col">Invoice</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(key.length==0) { %>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td>
+                         <span> No Data Avilable In Table </span>
+                      </td>
+                    </tr>
+                    <% } %>
+                    <% if(key.length!=0) { %>  
+                  <%for(let i=0;i<key.length;i++) { %>
+                  <tr class="fw-normal">
+                  
+                    <td class="align-middle">
+                      <span><%=key[i].domain%> </span>
+                    </td>
+
+                    <td class="align-middle">
+                      <span><%=key[i].subdomain%> </span>
+                    </td>
+
+                    <td class="align-middle">
+                      <span><%=key[i].cost%> </span>
+                    </td>
+
+                    <td class="align-middle">
+                      <h6 class="mb-0"><span class="badge bg-success">Delivered</span></h6>
+                    </td>
+
+                    <td class="align-middle">
+                      <span><%=key[i].professional%> </span>
+                    </td>
+
+                    <td><a href="/users/invoice/<%=key[i]._id%>">View Invoice</a></td>
+
+                  </tr>
+                  
+                 <% } %> 
+                 <% } %> 
+                
+                </tbody>
+              </table>
+  
+            </div>
+         
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+    
+      <!-- jQuery -->
+      <script src="/javascripts/jquery.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="/javascripts/bootstrap.bundle.min.js"></script>
+      <!-- DataTables  & Plugins -->
+      <script src="/javascripts/jquery.dataTables.min.js"></script>
+      <script src="/javascripts/dataTables.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.responsive.min.js"></script>
+      <script src="/javascripts/responsive.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.buttons.min.js"></script>
+      <script src="/javascripts/buttons.bootstrap4.min.js"></script>
+      <script src="/javascripts/jszip.min.js"></script>
+      <script src="/javascripts/pdfmake.min.js"></script>
+      <script src="/javascripts/vfs_fonts.js"></script>
+      <script src="/javascripts/buttons.html5.min.js"></script>
+      <script src="/javascripts/buttons.print.min.js"></script>
+      <script src="/javascripts/buttons.colVis.min.js"></script>
+      <!-- AdminLTE App -->
+      <script src="/javascripts/adminlte.min.js"></script>
+      <!-- AdminLTE for demo purposes -->
+      <script src="/javascripts/demo.js"></script>
+        <script>
+        $(function () {
+         
+            $('#example2').DataTable({
+              "paging": true,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": false,
+              "responsive": true,
+            });
+          });
+        
+        </script>
+  </body>
+
+</html>

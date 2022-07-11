@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand navbar-dark navbar-light" >
+
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+    
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/professional/professionaluserhome"  style="font-size: 20px;" class="nav-link" > Home Services</a>
+      </li>
+    
+
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="/professional/professionalacceptedorders"  style="font-size: 20px;" class="nav-link" > Accepted Orders</a>
+    </li>
+
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="/professional/professionaldeliveredorders"  style="font-size: 20px;" class="nav-link" > Delivered Orders</a>
+    </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item dropdown">
+
+            <a style="cursor: pointer;" class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <span class="d-none d-md-inline"><%=user%></span>
+            </a>
+            
+            <div class="dropdown-menu">
+            <a class="dropdown-item" href="/professional/logout">Log out</a>
+            
+            </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->

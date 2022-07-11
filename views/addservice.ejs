@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Service</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/include.css">
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini" style="background-color: #eee;">
+  
+ 
+
+  <%-include('./partials/adminnavbar.ejs')%>
+
+
+  <div style="height: 50px;"></div>
+
+
+  <div class="row">
+    <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+<% if(typeof(alertmsg)!='undefined') { %>
+  
+  <% if(alertmsg==true) { %> 
+  <div class="alert alert-success alert-dismissible fade show " role="alert" style=" text-align: center;">
+      <h5>Service Added Sucessfully</h5>     
+    <button type="button" class="close" data-dismiss="alert" aria-label="close" > 
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %> 
+  <% } %>
+  </div>
+  </div> 
+
+
+    <div class="row">
+       <div class="col-lg-1"></div>
+
+
+    
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-3"></div>
+        </div>
+      </section>
+
+      <div class="col-lg-10">
+      <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+              <!-- general form elements -->
+              <div class="card card-primary">
+                <div class="card-header" style="background-color: rgb(4, 134, 248);">
+                  <h3 style="color: white;">Add Service</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form method="post" name="formsubmit" enctype="multipart/form-data"> 
+
+                  <div class="card-body">
+  
+                    <% for(let i=0;i<alert.length;i++) { %>
+                      <div class="alert alert-warning alert-dismissible fade show " role="alert">
+                        <%=alert[i].msg%>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="close" > 
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                    <% } %>
+
+                    <div class="form-group" id="domain" style="display: block;">
+                    <label for="domain">Add Service</label>
+                        <select class="form-control" id="domain" name="adddomainexist">
+                          <% for(let i=0;i<domain.length;i++){ %>
+                            <option  value="<%=domain[i].domain%>"><%=domain[i].domain%></option> 
+                          <% } %>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                    <input type="checkbox" onclick="fun()" id="check2" name="check">
+                    <label for="check2"> Not In List? </label>
+                    </div>
+
+
+                    <script>
+                        function fun(){
+                            if (document.getElementById("check2").checked == true)
+                            {
+                                document.formsubmit.action='/admin/saveservicenew'
+                                document.getElementById("domainnew").style.display = "block";
+                                document.getElementById("domain").style.display="none";
+                                document.getElementById("check").style.display="block";
+
+                            } 
+                            else
+                            {
+                                document.formsubmit.action="/admin/saveservice"
+                                document.getElementById("domainnew").style.display = "none";
+                                document.getElementById("domain").style.display="block";
+                                document.getElementById("check").style.display="block";
+                            }
+                        }
+                    </script>
+
+                
+                    <div class="form-group" id="domainnew"  style="display: none;">
+                    <label for="domainnew">Add Service</label>
+                    <input type="text" class="form-control"  name="adddomain" placeholder="Enter Service"  >
+                    </div> 
+
+                
+                    <div class="form-group">
+                      <label for="subdomain">Add Sub Service</label>
+                      <input type="text" class="form-control"   onclick="fun()" name="subdomain"  placeholder="Enter Sub Service" required>
+                    </div>
+  
+                    <div class="form-group">
+                      <label for="cost">Cost</label>
+                      <input type="number" class="form-control" name="cost"  placeholder="Enter Cost" >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="image">Upload Image</label><br>
+                      <input type="file"  name="domainimage" required>
+                    </div><br>
+                    
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    
+                    </div>
+                </form>
+              </div>
+              <!-- /.card -->
+  
+              
+            
+        </div><!-- /.container-fluid -->
+      </section>
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+  
+  <!-- jQuery -->
+  <script src="/javascripts/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="/javascripts/bootstrap.bundle.min.js"></script>
+  <!-- bs-custom-file-input -->
+  <script src="/javascripts/bs-custom-file-input.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/javascripts/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="/javascripts/demo.js"></script>
+  <!-- Page specific script -->
+  
+  </body>
+  </html>

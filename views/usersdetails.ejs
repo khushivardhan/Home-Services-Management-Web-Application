@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/include.css">
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini"  style="background-color: #eee;">
+
+  <%-include('./partials/adminnavbar.ejs')%>
+
+  
+ <div style="height: 70px;"></div>              
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <div class="card" style="background-color: rgb(231, 243, 221)">
+      <div class="card-body">
+      
+        <% for(let i=0;i<key.length;i++) { %> 
+    
+          <div class="card">
+         <div class="card-body" style="background-color: #eee">
+                  <div class="row" >
+    
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4">
+                        <img src="/images/<%=key[i].image%>" style="height:200px; width: 280px;">
+                    </div>
+                  
+                    <div class="col-lg-4">
+                          <h4 class="m-t-0 m-b-0"><strong><%=key[i].loginname%></strong></h4>
+                         <h6 class="fas fa-phone"> +91 <%=key[i].number%></h6><br>
+                         <h6 class="fas fa-envelope">  <%=key[i].mail%></h6><br>
+                         <h6 class="fas fa-address-book">  <%=key[i].address%></h6>
+                          <div>
+                              <a href="/admin/vieworders/<%=key[i].loginname%>"><button class="btn btn-info btn-round">pending Orders </button></a>
+                              <a href="/admin/viewcompletedorders/<%=key[i].loginname%>"><button class="btn btn-dark btn-round btn-simple"> Delivered Orders</button></a>
+                          </div>
+                    </div>
+    
+                    </div>
+                    <div style="height: 40px"> </div> 
+        </div>
+        </div>
+          <% } %> 
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- jQuery -->
+<script src="/javascripts/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/javascripts/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="/javascripts/jquery.dataTables.min.js"></script>
+<script src="/javascripts/dataTables.bootstrap4.min.js"></script>
+<script src="/javascripts/dataTables.responsive.min.js"></script>
+<script src="/javascripts/responsive.bootstrap4.min.js"></script>
+<script src="/javascripts/dataTables.buttons.min.js"></script>
+<script src="/javascripts/buttons.bootstrap4.min.js"></script>
+<script src="/javascripts/jszip.min.js"></script>
+<script src="/javascripts/pdfmake.min.js"></script>
+<script src="/javascripts/vfs_fonts.js"></script>
+<script src="/javascripts/buttons.html5.min.js"></script>
+<script src="/javascripts/buttons.print.min.js"></script>
+<script src="/javascripts/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/javascripts/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/javascripts/demo.js"></script>
+<script>
+$(function () {
+ 
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+</script>
+</body>
+
+</html>

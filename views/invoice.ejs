@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script> 
+      <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script> 
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  
+
+    <title>Invoice</title>
+  
+</head>
+<body>
+
+    <div style="height: 50px;"></div>
+
+    <div class="row">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-3">
+   <a href="/users/completedorders" style="font-size: 30px; color: green;"> Home</a>
+   </div>
+   </div>
+
+   <div style="height: 130px;"></div>
+
+   <div class="row">
+       <div class="col-lg-3"></div>
+       <div class="col-lg-6">
+
+<div id="invoice">
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+        <div class="invoice-title">
+            <h2 style="text-align: center;">Home Services</h2>
+          <h2>Invoice</h2>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6">
+            <strong>Order Id: <%=key[0]._id%></strong><br>
+            <address>
+               <br>  <strong>Delivered To:</strong><br>
+              <%=user%><br>
+             +91 <%=key[0].number%><br>
+              <%=key[0].address%><br>
+             
+              </address>
+          </div>
+          <div class="col-xs-6 text-right">
+            <address>
+              <br> <br> <strong>Delivered By:</strong><br>
+            <%=key[0].professional%><br>
+          +91 <%=key[0].professionalnumber%><br>
+            <%=key[0].professionalmail%> 
+            </address>
+          </div>
+        </div>
+        <div class="row">
+          
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><strong>Delivery Summary</strong></h3>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-condensed">
+                <thead>
+                                <tr>
+                      <td ><strong>Domain</strong></td>
+                      <td><strong>Sub Domain</strong></td>
+                      <td ><strong>Status</strong></td>
+                      <td class="text-right"><strong>Cost</strong></td>
+                                </tr>
+                </thead>
+                <tbody>
+                  <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                  <tr>
+                    <td><%=key[0].domain%></td>
+                    <td ><%=key[0].subdomain%> </td>
+                    <td >  Delivered</td>
+                    <td class="text-right"><%=key[0].cost%> </td>
+                  </tr>
+                   
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+</div>
+</div>
+<div style="height: 50px;"></div>
+<div class="row">
+    <div class="col-lg-5"></div>
+    <div class="col-lg-3">
+<button class="btn btn-primary" onclick="generatePDF()">Generate Invoice</button>
+</div>
+</div>
+
+  <script>
+    function generatePDF() {
+        const element = document.getElementById('invoice');
+        html2pdf()
+            .from(element)
+            .save();
+    }
+</script>
+
+</body>
+</html>

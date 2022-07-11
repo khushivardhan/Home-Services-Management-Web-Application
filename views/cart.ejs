@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cart</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/include.css">
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini" >
+  
+ 
+  <%-include('./partials/usernavbar.ejs')%>
+
+ 
+  <section class="vh-100" style="background-color: #eee;">
+ <div style="height: 10px;"></div>
+  <div class="row">
+    <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+<% if(alertmsg!='a') { %>
+  
+  <% if(alertmsg==true) { %> 
+  <div class="alert alert-success alert-dismissible fade show " role="alert" style=" text-align: center;">
+      <h5>Booked Sucessfully</h5>     
+    <button type="button" class="close" data-dismiss="alert" aria-label="close" > 
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %> 
+
+  <% if(alertmsg==false) { %> 
+    <div class="alert alert-danger alert-dismissible fade show " role="alert" style=" text-align: center;">
+      <h5>Service Deleted From Cart</h5>     
+    <button type="button" class="close" data-dismiss="alert" aria-label="close" > 
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %> 
+
+<% } %>
+  </div>
+  </div>
+
+                        
+
+
+  
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-99">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card rounded-3">
+            <div class="card-body p-4">
+  
+              <h4 class="text-center my-3 pb-3">CART</h4>
+  
+  
+              <table class="table mb-4">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">Domain</th>
+                    <th scope="col">Sub Domain</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(key.length==0) { %>
+                    <tr>
+                      <td></td>
+                      
+                      <td>
+                         <span> No Data Avilable In Table </span>
+                      </td>
+                    </tr>
+                    <% } %>
+                    <% if(key.length!=0) { %>  
+                  <%for(let i=0;i<key.length;i++) { %>
+                     
+                  <tr>
+                  
+                    <td><%=key[i].domain %> </td>
+                    <td><%=key[i].subdomain %> </td>
+                    <td><%=key[i].cost %> </td>
+
+                    <td>
+                      <div class="modal fade" id="deletecart<%=key[i]._id%>" data-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                      <div class="modal-content">
+                      <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Confirm Delete</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                      Are U Sure Want To Remove From Cart?
+                      </div>
+                      <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                      <a href="/users/deletecart/<%=key[i]._id%>"><button type="button" class="btn btn-primary">Yes</button></a>
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      &emsp; <a class="fa fa-trash" data-toggle="modal" data-target="#deletecart<%=key[i]._id%>"></a>
+                    </td>
+
+                  </tr>
+                  <% } %> 
+                  <% } %> 
+                </tbody>
+              </table>
+  
+              <div class="modal fade" id="modalbook" data-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Booking Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Are U Sure Want To Book?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <a href="/users/book"><button type="button" class="btn btn-primary">Yes</button></a>
+                </div>
+                </div>
+                </div>
+                </div>
+                
+                <div style="height: 15px;"></div>
+                <% if(key.length>0) { %>
+                <div style="text-align: center;">
+                <a class="btn btn-success" data-toggle="modal" data-target="#modalbook">Book Now</a>
+                </div>
+                <% } %>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+                          
+    
+      <!-- jQuery -->
+      <script src="/javascripts/jquery.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="/javascripts/bootstrap.bundle.min.js"></script>
+      <!-- DataTables  & Plugins -->
+      <script src="/javascripts/jquery.dataTables.min.js"></script>
+      <script src="/javascripts/dataTables.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.responsive.min.js"></script>
+      <script src="/javascripts/responsive.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.buttons.min.js"></script>
+      <script src="/javascripts/buttons.bootstrap4.min.js"></script>
+      <script src="/javascripts/jszip.min.js"></script>
+      <script src="/javascripts/pdfmake.min.js"></script>
+      <script src="/javascripts/vfs_fonts.js"></script>
+      <script src="/javascripts/buttons.html5.min.js"></script>
+      <script src="/javascripts/buttons.print.min.js"></script>
+      <script src="/javascripts/buttons.colVis.min.js"></script>
+      
+      <!-- AdminLTE App -->
+      <script src="/javascripts/adminlte.min.js"></script>
+      <!-- AdminLTE for demo purposes -->
+      <script src="/javascripts/demo.js"></script>
+        <script>
+        $(function () {
+         
+            $('#example2').DataTable({
+              "paging": false,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+              "info": false,
+              "autoWidth": false,
+              "responsive": true,
+            });
+          });
+        
+        </script>
+  </body>
+
+</html>

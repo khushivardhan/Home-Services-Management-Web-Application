@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="/stylesheets/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+</head>
+
+<body class="hold-transition register-page">
+<div class="register-box" style="width: 450px;">
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a  class="h2"><b> Home Services</b></a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Professional Registeration</p>
+
+      <form method="post" name="professionalform">
+
+        <% for(let i=0;i<alert.length;i++) { %>
+          <div class="alert alert-warning alert-dismissible fade show " role="alert">
+            <%=alert[i].msg%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="close" > 
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <% } %>
+        
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control"  name="professionalname" placeholder="Name" >
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="number" class="form-control"  name="professionalnumber" placeholder="Mobile Number" >
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-mobile"></span>
+            </div> 
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control"  name="professionaladdress" placeholder="Address" >
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-address-book"></span>
+            </div> 
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control"  name="professionalmail" placeholder="Email" >
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div> 
+          </div>
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="form-group"   id="professionaldomain" style="display: block; width: 400px;">
+            <label for="domain">Add Domain</label>
+            <select class="form-control" name="professionaldomain">
+            <% for(let i=0;i<key.length;i++){ %>
+              <option  value="<%=key[i].domain%>"><%=key[i].domain%></option> 
+            <% } %>
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="checkbox" onclick="fun()" id="check2" name="check">
+            <label for="check2"> Not In List? </label>
+        </div>
+
+            <script>
+                function fun(){
+                    if (document.getElementById("check2").checked == true)
+                    {
+                        document.professionalform.action='/professional/registervalidatenew'
+                        document.getElementById("professionaldomainnew").style.display = "block";
+                        document.getElementById("professionaldomain").style.display="none";
+                        document.getElementById("check").style.display="block";
+
+                    } 
+                    else
+                    {
+                        document.professionalform.action='/professional/registervalidate'
+                        document.getElementById("professionaldomainnew").style.display = "none";
+                        document.getElementById("professionaldomain").style.display="block";
+                        document.getElementById("check").style.display="block";
+                    }
+                }
+            </script>
+
+            <div class="input-group mb-3">
+                <div id="professionaldomainnew" style="display: none; width:400px;">
+                <input type="text" class="form-control"  name="professionaldomainnew" placeholder="Your Working domain">
+                <div class="input-group-append">
+                
+            </div>
+            </div>
+            </div>
+
+
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" onclick="fun()" name="professionalpassword" placeholder="Create Your Password" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+
+        <div class="row">
+          
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+
+      </form><br>
+
+     
+      <a href="/users/login" class="text-center">Home</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="/javascripts/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/javascripts/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/javascripts/adminlte.min.js"></script>
+</body>
+</html>

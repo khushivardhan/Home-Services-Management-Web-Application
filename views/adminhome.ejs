@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/include.css">
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+ 
+</head>
+
+<body class="hold-transition sidebar-mini"  style="background-color: #eee;">
+
+  <%-include('./partials/adminnavbar.ejs')%>
+
+  
+<div style="height: 60px;"></div>             
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-5">
+
+    <!-- <div class="col-lg-4 col-6"> -->
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>Add Service</h3>
+
+          <p>Add new service and sub service</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="/admin/addservice" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    
+    
+
+    <!-- <div class="col-lg-4 col-6"> -->
+      <!-- small box -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>Users Details<sup style="font-size: 20px"></sup></h3>
+
+          <p>view all the users details</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-stats-bars"></i>
+        </div>
+        <a href="/admin/usersdetails" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    
+    
+    
+
+    <!-- <div class="col-lg-4 col-6"> -->
+      <!-- small box -->
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3>Employeees</h3>
+
+          <p>view employees data and status</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add"></i>
+        </div>
+        <a href="/admin/employeeinfo" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+  
+
+
+    <!-- <div class="col-lg-4 col-6"> -->
+      <!-- small box -->
+      <div class="small-box bg-danger">
+        <div class="inner">
+          <h3>Applications</h3>
+
+          <p>view professionals applications</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="/admin/professionalapplications" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+
+
+      <div class="small-box bg-dark">
+        <div class="inner">
+          <h3>Services Data</h3>
+
+          <p>count of delivered orders</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="/admin/ordersdata" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    
+
+    </div>
+
+<div class="col-lg-1"></div>
+    <div class="col-lg-4">
+
+    
+
+    <section class="content">
+      <div class="container-fluid">
+      
+            <div class="card card-danger">
+              <div class="card-header" style="background-color: rgb(88, 188, 75);">
+                <h3 class="card-title" style="color: black;">Orders Data</h3>
+              </div>
+              <div class="card-body">
+                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+            </div>
+          </div>
+    </section>
+    
+    <div style="height: 90px"></div>
+
+    <section class="content">
+      <div class="container-fluid">
+        
+            <div class="card card-danger">
+              <div class="card-header" style="background-color: rgb(88, 188, 75);">
+                <h3 class="card-title" style="color: black;">Professionals Status</h3>
+              </div>
+              <div class="card-body">
+                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+           </div>
+          </div>
+    </section>
+
+  </div>
+  </div>
+
+
+
+    
+      <!-- jQuery -->
+      <script src="/javascripts/jquery.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="/javascripts/bootstrap.bundle.min.js"></script>
+      <!-- DataTables  & Plugins -->
+      <script src="/javascripts/jquery.dataTables.min.js"></script>
+      <script src="/javascripts/dataTables.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.responsive.min.js"></script>
+      <script src="/javascripts/responsive.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.buttons.min.js"></script>
+      <script src="/javascripts/buttons.bootstrap4.min.js"></script>
+      <script src="/javascripts/jszip.min.js"></script>
+      <script src="/javascripts/pdfmake.min.js"></script>
+      <script src="/javascripts/vfs_fonts.js"></script>
+      <script src="/javascripts/Chart.min.js"></script>
+      <script src="/javascripts/buttons.html5.min.js"></script>
+      <script src="/javascripts/buttons.print.min.js"></script>
+      <script src="/javascripts/buttons.colVis.min.js"></script>
+      <!-- AdminLTE App -->
+      <script src="/javascripts/adminlte.min.js"></script>
+      <!-- AdminLTE for demo purposes -->
+      <script src="/javascripts/demo.js"></script>
+      
+
+      <% if(pending.length==0){
+        var p=0
+    }else{ 
+        var p=pending[0].PendingCount 
+    }%> 
+    
+    
+     <% if(accepted.length==0){
+        var a=0
+    }else{ 
+        var a=accepted[0].AcceptCount 
+    }%> 
+     
+     
+     <% if(completed.length==0){
+        var c=0
+    }else{ 
+        var c=completed[0].CompleteCount 
+    }%> 
+    
+    <!-- pie chart -->
+    
+    
+    <% if(pendingprof.length==0){
+      var pp=0
+    }else{ 
+      var pp=pendingprof[0].pendingpro
+    }%> 
+    
+    <% if(acceptprof.length==0){
+      var ap=0
+    }else{ 
+      var ap=acceptprof[0].acceptpro 
+    }%> 
+    
+    
+    <% if(declineprof.length==0){
+      var dp=0
+    }else{ 
+      var dp=declineprof[0].declinepro 
+    }%> 
+    
+    
+    <script type="">
+      $(function () {
+      var x=<%=p%>;
+      var y=<%=a%>;
+      var z=<%=c%>;
+    
+        var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+        var donutData        = {
+          labels: [
+              'Pending Orders',
+              'Accepted Orders',
+              'Delivered Orders',
+          ],
+          datasets: [
+            {
+              data: [x,y,z],
+              backgroundColor : ['#f56954','#f39c12','#00a65a'],
+            }
+          ]
+        }
+        var donutOptions     = {
+          maintainAspectRatio : false,
+          responsive : true,
+        }
+        new Chart(donutChartCanvas, {
+          type: 'doughnut',
+          data: donutData,
+          options: donutOptions
+        })
+    
+        // pie chart
+    
+        var i=<%=ap%>;
+        var j=<%=pp%>;
+        var k=<%=dp%>;
+    
+        var appData        = {
+          labels: [
+              'Accepted',
+              'Pending',
+              'Declined',
+          ],
+          datasets: [
+            {
+              data: [i,j,k],
+              backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+            }
+          ]
+        }
+        var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+        var pieData        = appData;
+        var pieOptions     = {
+          maintainAspectRatio : false,
+          responsive : true,
+        }
+    
+        new Chart(pieChartCanvas, {
+          type: 'pie',
+          data: pieData,
+          options: pieOptions
+        })
+    })
+    </script>
+  </body>
+
+</html>

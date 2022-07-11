@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profile</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/include.css">
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+
+</head>
+
+<body class="hold-transition sidebar-mini" style="background-color: #eee;">
+  
+ 
+  <%-include('./partials/usernavbar.ejs')%>
+  
+  <div style="height: 120px;"></div>
+  <div class="container">
+
+    <div class="card" style="background-color: rgb(201, 222, 206)">
+      <div class="card-body"> 
+  
+    <div class="row">
+      <!-- <div class="col-lg-1"></div> -->
+      <div class="col-lg-2">
+        <div style="height: 150px;"></div>
+    <div style="text-align: center">
+    <img src="/images/<%=key.image%>" style="height: 250px;">
+    </div>
+    </div>
+    
+  
+  <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+  
+  <div style="height: 50px;"></div>
+      <div class="row">
+         <div class="col-lg-1"></div> 
+  
+  
+      
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-3">
+             
+            </div>
+          </div>
+        </section>
+                
+  
+        <div class="col-lg-10">
+            <!-- Main content -->
+            <section class="content" >
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                        
+                        <div class="card-header" >
+                          <div class="row">
+                         
+                              <h3 style="color: rgb(27, 26, 26);">Profile</h3>
+                              <div class="col-lg-11"></div>
+                              <h5 onclick="fun()" class="fa fa-edit" style="float: right; cursor: pointer ;color: rgb(7, 6, 6);"></h5>
+  
+                          </div>
+                        </div> 
+                        
+                      <!-- /.card-header -->
+                         <form method="post" action="/users/save/<%=key.loginname%>">
+  
+                          <div class="card-body">
+  
+                              <% for(let i=0;i<alert1.length;i++) { %>
+                                  <div class="alert alert-warning alert-dismissible fade show " role="alert">
+                                    <%=alert1[i].msg%>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="close" > 
+                                      <span aria-hidden="true">&times;</span>
+                                      </button>
+                                </div>
+                                <% } %>
+             
+                               <div class="form-group">
+                               <label for="username">User Name</label>
+                               <input type="text" class="form-control" name="username" placeholder="User Name"  value="<%=key.loginname%>" required readonly>
+                               </div>
+             
+                               <div class="form-group">
+                                 <label for="number">Mobile Number</label>
+                                 <input type="number" class="form-control" name="number" id="number" placeholder="Mobile Number" value="<%=key.number%>" required readonly>
+                               </div>
+             
+                               <div class="form-group">
+                                 <label for="text">Email</label>
+                                 <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="<%=key.mail%>" required readonly>
+                               </div>
+  
+                               <div class="form-group">
+                                  <label for="address">Address</label>
+                                  <input type="text" class="form-control" name="address" id="address" placeholder="Address" value="<%=key.address%>" required readonly>
+                                </div>
+  
+                                <input class="btn btn-primary" style="display: none;" id="done" type="submit">
+                          </div>
+  
+                         </form>
+                </div>
+                </div>
+  
+              </div>
+            </div>
+          </section>   
+          </div>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+  </div>
+      <script>
+          function fun()
+          {
+              document.getElementById("number").readOnly=false;
+              document.getElementById("email").readOnly=false;
+              document.getElementById("address").readOnly=false;
+              document.getElementById("done").style.display="block"
+          }
+      </script>
+    
+      <!-- jQuery -->
+      <script src="/javascripts/jquery.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="/javascripts/bootstrap.bundle.min.js"></script>
+      <!-- DataTables  & Plugins -->
+      <script src="/javascripts/jquery.dataTables.min.js"></script>
+      <script src="/javascripts/dataTables.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.responsive.min.js"></script>
+      <script src="/javascripts/responsive.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.buttons.min.js"></script>
+      <script src="/javascripts/buttons.bootstrap4.min.js"></script>
+      <script src="/javascripts/jszip.min.js"></script>
+      <script src="/javascripts/pdfmake.min.js"></script>
+      <script src="/javascripts/vfs_fonts.js"></script>
+      <script src="/javascripts/buttons.html5.min.js"></script>
+      <script src="/javascripts/buttons.print.min.js"></script>
+      <script src="/javascripts/buttons.colVis.min.js"></script>
+      
+      <!-- AdminLTE App -->
+      <script src="/javascripts/adminlte.min.js"></script>
+      <!-- AdminLTE for demo purposes -->
+      <script src="/javascripts/demo.js"></script>
+        <script>
+        $(function () {
+         
+            $('#example2').DataTable({
+              "paging": true,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": false,
+              "responsive": true,
+            });
+          });
+        
+        </script>
+  </body>
+
+</html>

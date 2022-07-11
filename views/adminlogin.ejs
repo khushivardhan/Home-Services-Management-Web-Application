@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Login</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="/stylesheets/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+</head>
+
+<body class="hold-transition login-page">
+
+<div class="login-box" style="width: 450px;">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+    <a class="h2"  ><b> Home Services</b></a>
+    </div>
+
+    <div class="card-body">
+      <p class="login-box-msg">Admin Login!</p>
+
+      <form action="/admin/validateadmin" method="post">
+
+        <% for(let i=0;i<alert.length;i++) { %>
+          <div class="alert alert-warning alert-dismissible fade show " role="alert">
+            <%=alert[i].msg%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="close" > 
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <% } %>
+
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="adminloginname" placeholder="Login Name" >
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fa fa-user" ></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="adminpassword" placeholder="Password" >
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+
+      </form>
+      <br>
+      <p class="mb-0">
+
+        <a href="/users/login">Home</a>
+      </p>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="/javascripts/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/javascripts/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/javascripts/adminlte.min.js"></script>
+</body>
+
+</html>

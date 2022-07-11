@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pending Orders</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/include.css">
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini" style="background-color: #eee;">
+  
+ 
+
+  <%-include('./partials/adminnavbar.ejs')%>
+
+  <div style="height: 20px;"></div>
+
+  <div style="text-align:center; font-size: larger;">
+  <a href="/admin/usersdetails" class="btn btn-info">  usersdetails  </a>
+  </div>
+
+    <div class="row">
+      <!-- <div class="col-lg-1"></div> -->
+
+
+    
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6"></div>
+          </div>
+        </div>
+      </section>
+              
+
+      <div class="col-lg-12">
+          <!-- Main content -->
+          <section class="content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
+                  <div class="card">
+                      <div class="card-header" style="background-color: rgb(4, 134, 248);">
+                        <b><h3 style="color: white;">Orders</h3></b>
+                      </div> 
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                          <tr>
+                            <th>Domain</th>
+                            <th>Sub Domain</th>
+                            <th>Cost</th>
+                            <th>Status</th>
+                            
+                            
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                        
+                          <%for(let i=0;i<key.length;i++){%>
+                           
+                              <tr>
+                              <td><%=key[i].domain%></td>
+                              <td><%=key[i].subdomain%></td>
+                              <td><%=key[i].cost%></td>
+                              <% if(key[i].status=="pending") 
+                              { %>
+                              <td><span class="badge badge-pill badge-danger"><%=key[i].status%></span></td>
+                              <% }
+                              else
+                              { %>
+                                <td><span class="badge badge-pill badge-warning"><%=key[i].status%></span></td>
+                              <% } %>
+                          </tr>
+                          <%}%>
+                        </tfoot>
+                        </table>
+                        </div>
+                        </div>
+              </div>
+            </div>
+          </div>
+        </section>   
+        </div>
+        </div>
+      </div>
+    
+      <!-- jQuery -->
+      <script src="/javascripts/jquery.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="/javascripts/bootstrap.bundle.min.js"></script>
+      <!-- DataTables  & Plugins -->
+      <script src="/javascripts/jquery.dataTables.min.js"></script>
+      <script src="/javascripts/dataTables.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.responsive.min.js"></script>
+      <script src="/javascripts/responsive.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.buttons.min.js"></script>
+      <script src="/javascripts/buttons.bootstrap4.min.js"></script>
+      <script src="/javascripts/jszip.min.js"></script>
+      <script src="/javascripts/pdfmake.min.js"></script>
+      <script src="/javascripts/vfs_fonts.js"></script>
+      <script src="/javascripts/buttons.html5.min.js"></script>
+      <script src="/javascripts/buttons.print.min.js"></script>
+      <script src="/javascripts/buttons.colVis.min.js"></script>
+      <!-- AdminLTE App -->
+      <script src="/javascripts/adminlte.min.js"></script>
+      <!-- AdminLTE for demo purposes -->
+      <script src="/javascripts/demo.js"></script>
+        <script>
+        $(function () {
+         
+            $('#example2').DataTable({
+              "paging": true,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": false,
+              "responsive": true,
+            });
+          });
+        
+        </script>
+  </body>
+
+</html>

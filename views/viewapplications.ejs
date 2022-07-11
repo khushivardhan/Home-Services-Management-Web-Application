@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Applications</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/stylesheets/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/stylesheets/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/stylesheets/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/stylesheets/include.css">
+  <link rel="stylesheet" href="/stylesheets/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini" >
+  
+ 
+
+  <%-include('./partials/adminnavbar.ejs')%>
+
+<section class="vh-100" style="background-color: #eee;">
+  <div style="height: 10px;"></div>
+
+  <div class="row">
+    <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+<% if(alertmsg!='a') { %>
+  
+  <% if(alertmsg==true) { %> 
+  <div class="alert alert-success alert-dismissible fade show " role="alert" style=" text-align: center;">
+      <h5>Application Accepted Sucessfully</h5>     
+    <button type="button" class="close" data-dismiss="alert" aria-label="close" > 
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %> 
+
+  <% if(alertmsg==false) { %> 
+    <div class="alert alert-danger alert-dismissible fade show " role="alert" style=" text-align: center;">
+      <h5>Application Declined Sucessfully</h5>     
+    <button type="button" class="close" data-dismiss="alert" aria-label="close" > 
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% } %> 
+
+<% } %>
+  </div>
+  </div>
+
+
+  
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-99">
+        <div class="col-md-12 col-xl-10">
+  
+          <div class="card">
+            <div class="card-header p-3">
+              <h5 class="mb-0">Applications</h5>
+            </div>
+            <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: auto">
+  
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Domain</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Accept/Reject</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <% if(key.length==0) { %>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td>
+                         <span> No Data Avilable In Table </span>
+                      </td>
+                    </tr>
+                    <% } %>
+                  <% if(key.length!=0) { %>  
+                      <%for(let i=0;i<key.length;i++){%>
+                      
+                      <tr class="fw-normal">
+  
+                        <td class="align-middle">
+                          <span><%=key[i].name%> </span>
+                        </td>
+  
+                        <td class="align-middle">
+                          <span><%=key[i].domain%> </span>
+                        </td>
+  
+                        <td class="align-middle">
+                          <span><%=key[i].number%> </span>
+                        </td>
+  
+                        <td class="align-middle">
+                          <span><%=key[i].address%> </span>
+                        </td>
+  
+                       <td class="align-middle">
+                          <span><%=key[i].mail%> </span>
+                        </td>
+  
+                        <td class="align-middle">
+                          <a class="fa fa-check" href="/admin/acceptapplication/<%=key[i].name%>"></a>&emsp;
+                          <a class="fa fa-times" href="/admin/declineapplication/<%=key[i].name%>"></a>
+                        </td>
+  
+                     </tr>
+                    <% } %>      
+                  <% } %>   
+                </tbody>
+              </table>
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+              
+      
+      <!-- jQuery -->
+      <script src="/javascripts/jquery.min.js"></script>
+      <!-- Bootstrap 4 -->
+      <script src="/javascripts/bootstrap.bundle.min.js"></script>
+      <!-- DataTables  & Plugins -->
+      <script src="/javascripts/jquery.dataTables.min.js"></script>
+      <script src="/javascripts/dataTables.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.responsive.min.js"></script>
+      <script src="/javascripts/responsive.bootstrap4.min.js"></script>
+      <script src="/javascripts/dataTables.buttons.min.js"></script>
+      <script src="/javascripts/buttons.bootstrap4.min.js"></script>
+      <script src="/javascripts/jszip.min.js"></script>
+      <script src="/javascripts/pdfmake.min.js"></script>
+      <script src="/javascripts/vfs_fonts.js"></script>
+      <script src="/javascripts/buttons.html5.min.js"></script>
+      <script src="/javascripts/buttons.print.min.js"></script>
+      <script src="/javascripts/buttons.colVis.min.js"></script>
+      <!-- AdminLTE App -->
+      <script src="/javascripts/adminlte.min.js"></script>
+      <!-- AdminLTE for demo purposes -->
+      <script src="/javascripts/demo.js"></script>
+        <script>
+        $(function () {
+         
+            $('#example2').DataTable({
+              "paging": true,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": false,
+              "responsive": true,
+            });
+          });
+        
+        </script>
+  </body>
+
+</html>
